@@ -6,7 +6,7 @@ name: default
 
 steps:
   - name: publish
-    image: alpine/python
+    image: python:3.6
     environment:
       POETRY_PYPI_TOKEN_PYPI:
         from_secret: poetry_pypi_token
