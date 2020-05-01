@@ -10,7 +10,7 @@ steps:
     commands:
       - pip3 install poetry
       - poetry install --no-root
-      - python3 -m doctest ./huntflow_py/*
+      - poetry run python3 -m doctest ./huntflow_py/*
 
   - name: publish-branches
     image: python:3.6
@@ -22,7 +22,6 @@ steps:
       - pip3 install --upgrade keyrings.alt
       - poetry config repositories.testpypi https://test.pypi.org/legacy/
       - poetry config pypi-token.testpypi $${PYPI_TOKEN_TEST}
-      # - poetry install --no-root  # use for running tests
       - poetry publish -n --build -r testpypi
     when:
       branch:
@@ -39,7 +38,6 @@ steps:
       - pip3 install --upgrade keyrings.alt
       - poetry config repositories.pypi https://pypi.org/legacy/
       - poetry config pypi-token.pypi $${PYPI_TOKEN_PROD}
-      # - poetry install --no-root  # use for running tests
       - poetry publish -n --build -r pypi
     when:
       branch:
