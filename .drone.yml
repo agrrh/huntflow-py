@@ -12,7 +12,8 @@ steps:
         from_secret: poetry_pypi_token
     commands:
       - pip install poetry
-      - poetry config repositories.test https://test.pypi.org/project/huntflow-py
-      - poetry install
-      - poetry build
-      - poetry publish
+      - poetry config repositories.testpypi https://test.pypi.org/legacy/
+      - poetry config pypi-token.testpypi ${POETRY_PYPI_TOKEN_PYPI}
+      # - poetry install --no-root  # use for running tests
+      - poetry build -f sdist
+      - poetry publish -r testpypi
