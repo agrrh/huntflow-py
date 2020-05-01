@@ -21,6 +21,6 @@ huntflow = Huntflow(
 print(huntflow.me())
 ```
 
-For other methods see [api.py](./huntflow_py/api.py).
+For other methods see `api.py`.
 
 Right now I'm not sure how to generate available methods list automatically, feel free to contact and let me know.
