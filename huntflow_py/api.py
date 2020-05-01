@@ -4,6 +4,7 @@ from huntflow_py.client import Client
 class BaseAPI(object):
     """Common API methods and params."""
 
+    # TODO mock for testing purposes?
     URL = 'https://api.huntflow.ru/'
 
     def __init__(self, token=None, email=None):
@@ -15,11 +16,11 @@ class BaseAPI(object):
 
 class APIv1(BaseAPI):
     """
-    Version 1 of API.
+    API version 1.
 
     Sadly, Huntflow does not actually version their API, so this is "first" version as of 23.04.2020.
 
-    Guys, if you read this, take a look at Semver or something. :)
+    Guys, if you read this, take a look at SemVer or something. :)
     """
 
     def __init__(self, **kwargs):
@@ -77,7 +78,8 @@ class APIv1(BaseAPI):
     def vacancy_requests(self, account_id, vacancy_id=None):
         """List of vacancy requests.
 
-        Supports stating `vacancy_id` which filters list by selected vacancy."""
+        Supports stating `vacancy_id` which filters list by selected vacancy.
+        """
 
         return self.client._request(
             f'/account/{account_id}/account_vacancy_request',
@@ -135,7 +137,7 @@ class APIv1(BaseAPI):
 
     def tags_by_account(self, account_id):
         """Company's tags."""
-        # TODO pagination?
+        # TODO Is pagination possible here?
         return self.client._request(f'/account/{account_id}/tag')
 
     def tag_info(self, account_id, tag_id):
@@ -151,7 +153,7 @@ class APIv1(BaseAPI):
         )
 
     def tag_edit(self, account_id, tag_id, payload={}):
-        """Tag info."""
+        """Tag update."""
         return self.client._request(
             f'/account/{account_id}/tag/{tag_id}',
             method='PUT',
@@ -167,7 +169,7 @@ class APIv1(BaseAPI):
 
     def tags_by_applicant(self, account_id, applicant_id):
         """Get applicant's tags."""
-        # TODO pagination?
+        # TODO Is pagination possible here?
         return self.client._request(f'/account/{account_id}/applicants/{applicant_id}/tag')
 
     def apllicant_tag_info(self, account_id, applicant_id, applicant_tag_id):
