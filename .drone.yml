@@ -8,24 +8,6 @@ steps:
   - name: publish-branches
     image: python:3.6
     environment:
-      PYPI_TOKEN_PROD:
-        from_secret: pypi_token_prod
-    commands:
-      - pip3 install poetry
-      - pip3 install --upgrade keyrings.alt
-      - poetry config repositories.pypi https://pypi.org/legacy/
-      - poetry config pypi-token.pypi $${PYPI_TOKEN_TEST}
-      # - poetry install --no-root  # use for running tests
-      - poetry build -f sdist
-      - poetry publish
-    when:
-      branch:
-        include:
-          - master
-
-  - name: publish-master
-    image: python:3.6
-    environment:
       PYPI_TOKEN_TEST:
         from_secret: pypi_token_test
     commands:
@@ -39,4 +21,22 @@ steps:
     when:
       branch:
         exclude:
+          - master
+
+  - name: publish-master
+    image: python:3.6
+    environment:
+      PYPI_TOKEN_PROD:
+        from_secret: pypi_token_prod
+    commands:
+      - pip3 install poetry
+      - pip3 install --upgrade keyrings.alt
+      - poetry config repositories.pypi https://pypi.org/legacy/
+      - poetry config pypi-token.pypi $${PYPI_TOKEN_PROD}
+      # - poetry install --no-root  # use for running tests
+      - poetry build -f sdist
+      - poetry publish -r pypi
+    when:
+      branch:
+        include:
           - master
