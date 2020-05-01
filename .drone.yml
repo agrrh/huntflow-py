@@ -16,8 +16,7 @@ steps:
       - poetry config repositories.testpypi https://test.pypi.org/legacy/
       - poetry config pypi-token.testpypi $${PYPI_TOKEN_TEST}
       # - poetry install --no-root  # use for running tests
-      - poetry build -f sdist
-      - poetry publish -r testpypi
+      - poetry publish -n --build -r testpypi
     when:
       branch:
         exclude:
@@ -34,8 +33,7 @@ steps:
       - poetry config repositories.pypi https://pypi.org/legacy/
       - poetry config pypi-token.pypi $${PYPI_TOKEN_PROD}
       # - poetry install --no-root  # use for running tests
-      - poetry build -f sdist
-      - poetry publish -r pypi
+      - poetry publish -n --build -r pypi
     when:
       branch:
         include:
