@@ -1,5 +1,7 @@
 # Info
 
+[![Build Status](https://drone-gh.agrrh.com/api/badges/agrrh/huntflow-py/status.svg)](https://drone-gh.agrrh.com/agrrh/huntflow-py)
+
 ## Requirements
 
 To use [Huntflow API](https://github.com/huntflow/api) you need to obtain personal token by asking support via email.
