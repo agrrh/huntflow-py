@@ -22,6 +22,25 @@ class Client(object):
     })
 
     def __init__(self, token=None, email=''):
+        """
+        Client used to simplify API calls, share some parameters, ease logging, etc.
+
+            >>> from client import Client
+
+        Ensure empty emails not allowed:
+
+            >>> c = Client(token='test')
+            Traceback (most recent call last):
+            ...
+            email_validator.EmailSyntaxError: The email address is not valid. It must have exactly one @-sign.
+
+        Ensure invalid email not allowed:
+
+            >>> c = Client(token='test', email='foo@bar.zorg')
+            Traceback (most recent call last):
+            ...
+            email_validator.EmailUndeliverableError: The domain name bar.zorg does not exist.
+        """
         self.token = token
 
         # NOTE HuntFlow requires User-Agent header, we also require valid email for emergency contact.
