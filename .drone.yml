@@ -11,9 +11,10 @@ steps:
       POETRY_PYPI_TOKEN_PYPI:
         from_secret: poetry_pypi_token
     commands:
-      - pip install poetry
+      - pip3 install poetry
+      - pip3 install --upgrade keyrings.alt
       - poetry config repositories.testpypi https://test.pypi.org/legacy/
-      - poetry config pypi-token.testpypi ${POETRY_PYPI_TOKEN_PYPI}
+      - poetry config pypi-token.testpypi $${POETRY_PYPI_TOKEN_PYPI}
       # - poetry install --no-root  # use for running tests
       - poetry build -f sdist
       - poetry publish -r testpypi
