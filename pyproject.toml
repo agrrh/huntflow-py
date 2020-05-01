@@ -11,6 +11,7 @@ repository = "https://github.com/agrrh/huntflow-py"
 [tool.poetry.dependencies]
 python = "^3.6"
 email_validator = "^1.1.0"
+requests = "^2.23.0"
 
 # [tool.poetry.dev-dependencies]
 # pytest = "^5.2"
