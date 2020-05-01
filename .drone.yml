@@ -5,20 +5,13 @@ type: docker
 name: test
 
 steps:
-  - name: test
+  - name: test-smoke
     image: python:3.6
     commands:
       - pip3 install poetry
       - poetry install --no-root
       - python3 -m doctest ./huntflow_py/*
 
----
-
-kind: pipeline
-type: docker
-name: publish
-
-steps:
   - name: publish-branches
     image: python:3.6
     environment:
