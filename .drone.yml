@@ -32,7 +32,7 @@ steps:
       - pip3 install --upgrade keyrings.alt
       - poetry config repositories.testpypi https://test.pypi.org/legacy/
       - poetry config pypi-token.testpypi $${PYPI_TOKEN_TEST}
-      - poetry version $(poetry version --no-ansi | cut -d' ' -f2)-$(echo ${DRONE_COMMIT_SHA} | cut -c1-6).0
+      - poetry version $(poetry version --no-ansi | cut -d' ' -f2)-dev+$(echo ${DRONE_COMMIT_SHA} | cut -c1-6)
       - poetry publish -n --build -r testpypi
     when:
       branch:
