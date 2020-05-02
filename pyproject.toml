@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "huntflow-py"
-version = "0.1.0"
+version = "0.1.1"
 description = "Huntflow API library for Python"
 authors = ["Kirill K <kovalev.kirill.a@gmail.com>"]
 license = "WTFPL"
