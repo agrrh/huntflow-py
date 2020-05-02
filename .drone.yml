@@ -46,9 +46,9 @@ steps:
     commands:
       - pip3 install poetry
       - pip3 install --upgrade keyrings.alt
-      - poetry config repositories.pypi https://pypi.org/legacy/
+      # - poetry config repositories.pypi https://pypi.org/legacy/
       - poetry config pypi-token.pypi $${PYPI_TOKEN_PROD}
-      - poetry publish -n --build -r pypi
+      - poetry publish -n --build
     when:
       branch:
         include:
