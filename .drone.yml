@@ -12,6 +12,12 @@ steps:
       - poetry install --no-root
       - poetry run python3 -m doctest ./huntflow_py/*
 
+# No need to run tests for master as those could not be skipped for develop
+trigger:
+  branch:
+    exclude:
+      - master
+
 ---
 
 kind: pipeline
