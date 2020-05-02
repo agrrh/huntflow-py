@@ -32,6 +32,7 @@ steps:
       - pip3 install --upgrade keyrings.alt
       - poetry config repositories.testpypi https://test.pypi.org/legacy/
       - poetry config pypi-token.testpypi $${PYPI_TOKEN_TEST}
+      - sed -i -E "s/version = \"(.*)\"/version = \"\1-${DRONE_COMMIT_SHA}\"/" pyproject.toml
       - poetry publish -n --build -r testpypi
     when:
       branch:
